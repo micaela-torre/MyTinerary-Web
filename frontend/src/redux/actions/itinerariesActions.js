@@ -3,7 +3,7 @@ const itinerariesActions = {
   getItineraries: (id) => {
     return async (dispatch, getState) => {
       let respuesta = await axios.get(
-        ` http://localhost:4000/api/itineraries/${id}`
+        ` https://mytinerary-web.herokuapp.com/api/itineraries/${id}`
       );
       let info = respuesta.data.response;
       if (!respuesta.data.success) {
@@ -15,7 +15,7 @@ const itinerariesActions = {
   getActivitiesByItinerary: (id) => {
     return async () => {
       try {
-        let res = await axios.get(`http://localhost:4000/api/activities/${id}`);
+        let res = await axios.get(`https://mytinerary-web.herokuapp.com/api/activities/${id}`);
         return res;
       } catch (e) {
         console.log(e);
@@ -26,7 +26,7 @@ const itinerariesActions = {
     return async () => {
       try {
         let res = await axios.put(
-          `http://localhost:4000/api/like/${id}`,
+          `https://mytinerary-web.herokuapp.com/api/like/${id}`,
           {},
           {
             headers: {
@@ -46,7 +46,7 @@ const itinerariesActions = {
       try {
   
         let res = await axios.put(
-          `http://192.168.0.125:4000/api/comment/${id}`,
+          `https://mytinerary-web.herokuapp.com/api/comment/${id}`,
           {...comment },
           {
             headers: {
@@ -65,7 +65,7 @@ const itinerariesActions = {
     return async () => {
       try {
         let res = await axios.delete(
-          `http://localhost:4000/api/comment-delete/${id}`,
+          `https://mytinerary-web.herokuapp.com/api/comment-delete/${id}`,
           {
             headers: {
               Authorization: "Bearer " + token,

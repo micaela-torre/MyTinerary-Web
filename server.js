@@ -3,11 +3,15 @@ const app = express();
 const router = require("./routes/index");
 const cors = require("cors");
 const passport = require("passport");
+const path = require('path')
 require("dotenv").config();
 require("./config/database");
 require("./config/passport");
-//Middleware
+
 app.use(express.json());
 app.use(cors());
-app.use("/api", router); //ponete a escuchar cuando te entre cualquier pedido de cualquier metodo post o get
-app.listen(4000, () => console.log("server in port :)"));
+app.use("/api", router); 
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static('client/build'))
+    app.get('*', (req, res)=> {res.sendFile(path.join(__dirname+'/client/build/index.html'))})}
+app.listen(process.env.PORT || 4000,process.env.HOST || '0.0.0.0', () => console.log("Servidor en línea"))

@@ -3,7 +3,7 @@ import axios from "axios";
 const usersActions = {
   signIn: (user) => {
     return async (dispatch, getState) => {
-      let res = await axios.post("http://localhost:4000/api/user/signin", {
+      let res = await axios.post("https://mytinerary-web.herokuapp.com/api/user/signin", {
         ...user,
       });
       dispatch({ type: "LOG_INTO_SYSTEM", payload: res.data.response });
@@ -12,7 +12,7 @@ const usersActions = {
   },
   signUp: (user) => {
     return async (dispatch, getState) => {
-      let res = await axios.post("http://localhost:4000/api/users", {
+      let res = await axios.post("https://mytinerary-web.herokuapp.com/api/users", {
         ...user,
       });
       dispatch({ type: "LOG_INTO_SYSTEM", payload: res.data.response });
@@ -29,7 +29,7 @@ const usersActions = {
   logInLS: (token) => {
     return async (dispatch, getState) => {
       try {
-        let res = await axios.get("http://localhost:4000/api/verifyToken", {
+        let res = await axios.get("https://mytinerary-web.herokuapp.com/api/verifyToken", {
           headers: {
             Authorization: "Bearer " + token,
           },
